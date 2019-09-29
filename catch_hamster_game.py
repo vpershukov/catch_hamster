@@ -1,5 +1,4 @@
-import random
-## TODO: from random import randint, choice
+from random import randint
 
 class Player:
     position = [0, 0]
@@ -9,20 +8,20 @@ class Hamster:
     health = 1
     def __init__(self, hamster_id, map):
         self.hamster_id = hamster_id
-        self.health = 1 # random.randint(1, 4)
+        self.health = 1
         self.position = self.get_empty_position(map)
 
     def get_empty_position(self, map):
         map_height = len(map.split("\n"))
         map_width = len(map.split("\n")[0])
         while True:
-            coordinates = [random.randint(0, map_width - 1), random.randint(0, map_height - 1)]
+            coordinates = [randint(0, map_width - 1), randint(0, map_height - 1)]
             if map.split("\n")[coordinates[1]][coordinates[0]] == "*":
                 return coordinates
 
     def hamster_catched(self):
         self.health -= 1
-        print("Hamster number {hamster_id} catched".format(hamster_id=self.hamster_id))
+        print("Hamster number {hamster_id} catched.".format(hamster_id=self.hamster_id))
 
 hamster_count = 4
 
@@ -96,7 +95,7 @@ class Game:
         while self.gameon:
             command = input("Type your command: ")
             if command not in ["s", "w", "a", "d"]:
-                print("Wrong command")
+                print("Wrong command.")
             else:
                 self.move_player(command)
                 self.render_map()
