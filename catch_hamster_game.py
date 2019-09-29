@@ -26,7 +26,7 @@ class Hamster:
 hamster_count = 4
 
 class Game:
-    map = """****\n****\n****\n****"""
+    map = """*****\n*****\n*****"""
     gameon = True
     num_of_lines = len(map.split("\n"))
     len_of_line = len(map.split("\n")[0])
@@ -54,7 +54,7 @@ class Game:
     def move_player(self, direction):
         """direction = w, a, s, d"""
         if direction == "s":               # down
-            if self.player.position[1] == self.num_of_lines + 1:
+            if self.player.position[1] == self.num_of_lines - 1:
                 return False
             else:
                 self.player.position[1] += 1
