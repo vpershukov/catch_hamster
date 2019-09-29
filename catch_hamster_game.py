@@ -23,9 +23,8 @@ class Hamster:
         self.health -= 1
         print("Hamster number {hamster_id} catched.".format(hamster_id=self.hamster_id))
 
-hamster_count = 4
-
 class Game:
+    hamsters_count = 4
     map = """*****\n*****\n*****"""
     gameon = True
     num_of_lines = len(map.split("\n"))
@@ -33,8 +32,8 @@ class Game:
     def __init__(self):
         self.player = Player()
         self.hamsters = []
-        for i in range(hamster_count):
-            self.hamsters.append(Hamster(hamster_id=i+1, map=self.get_map_with_all_hamsters()))
+        for i in range(self.hamsters_count):
+            self.hamsters.append(Hamster(hamster_id=i+1, map=self.get_map_with_all_hamsters(True)))
 
     def add_point(self, position, name, map):
         map_in_list = map.split("\n")
@@ -45,7 +44,7 @@ class Game:
 
     def render_map(self):
         map = self.map
-        map = self.add_point(self.player.position, "x", map)
+        map = self.add_point(position=self.player.position, name="x", map=map)
         for hamster in self.hamsters:
             if hamster.health > 0:
                 map = self.add_point(position=hamster.position, name=str(hamster.hamster_id), map=map)
@@ -75,10 +74,12 @@ class Game:
                 self.player.position[0] += 1
         self.on_move()
 
-    def get_map_with_all_hamsters(self):
+    def get_map_with_all_hamsters(self, start_game=False):
         map = self.map
         for hamster in self.hamsters:
             map = self.add_point(position=hamster.position, name=str(hamster.hamster_id), map=map)
+        if start_game:
+            map = self.add_point(position=self.player.position, name="x", map=map)
         return map
 
     def get_hamster_on_position(self, coordinates):
