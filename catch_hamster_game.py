@@ -100,6 +100,9 @@ class Game:
             else:
                 self.move_player(command)
                 self.render_map()
+            if len([hamster for hamster in self.hamsters if hamster.health > 0]) == 0:
+                print("Wow, you won! So success, many congratulations.")
+                self.gameon = False
 
 game = Game()
 game.start()
