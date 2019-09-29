@@ -2,9 +2,7 @@ import random
 ## TODO: from random import randint, choice
 
 class Player:
-    health = 100
-    default_damage = 10
-    position = [3, 0]
+    position = [0, 0]
 
 class Hamster:
     position = [0, 0]
@@ -30,6 +28,7 @@ hamster_count = 4
 
 class Game:
     map = """****\n****\n****\n****"""
+    gameon = True
     num_of_lines = len(map.split("\n"))
     len_of_line = len(map.split("\n")[0])
     def __init__(self):
@@ -94,7 +93,7 @@ class Game:
 
     def start(self):
         game.render_map()
-        while True:
+        while self.gameon:
             command = input("Type your command: ")
             if command not in ["s", "w", "a", "d"]:
                 print("Wrong command")
