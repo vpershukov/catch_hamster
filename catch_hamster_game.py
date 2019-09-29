@@ -1,13 +1,10 @@
 import random
 ## TODO: from random import randint, choice
-## TODO: direction not destination
-
 
 class Player:
     health = 100
     default_damage = 10
     position = [3, 0]
-
 
 class Hamster:
     position = [0, 0]
@@ -29,9 +26,7 @@ class Hamster:
         self.health -= 1
         print("Hamster number {hamster_id} catched".format(hamster_id=self.hamster_id))
 
-
 hamster_count = 4
-
 
 class Game:
     map = """****\n****\n****\n****"""
@@ -58,24 +53,24 @@ class Game:
                 map = self.add_point(position=hamster.position, name=str(hamster.hamster_id), map=map)
         print(map)
 
-    def move_player(self, destination):
-        """destination = w, a, s, d"""
-        if destination == "s":               # down
+    def move_player(self, direction):
+        """direction = w, a, s, d"""
+        if direction == "s":               # down
             if self.player.position[1] == self.num_of_lines + 1:
                 return False
             else:
                 self.player.position[1] += 1
-        if destination == "w":               # up
+        if direction == "w":               # up
             if self.player.position[1] == 0:
                 return False
             else:
                 self.player.position[1] -= 1
-        if destination == "a":               # left
+        if direction == "a":               # left
             if self.player.position[0] == 0:
                 return False
             else:
                 self.player.position[0] -= 1
-        if destination == "d":               # right
+        if direction == "d":               # right
             if self.player.position[0] == self.len_of_line - 1:
                 return False
             else:
